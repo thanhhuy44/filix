@@ -12,6 +12,10 @@ const open_sans = Open_Sans({ subsets: ['latin'] });
 export const metadata: Metadata = {
   title: 'Flix - Movie Stream Website',
   description: 'Build by me!',
+  authors: {
+    name: 'Thanh Huy',
+    url: 'https://github.com/thanhhuy44',
+  },
   openGraph: {
     title: 'Flix - Movie Stream Website',
     description: 'Build by me!',
