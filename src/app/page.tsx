@@ -2,6 +2,7 @@ import Api from '@/api';
 import HomeSwiper from '@/components/home-swiper';
 import Section from '@/components/section';
 import { IMovie } from '@/types/interface';
+import { Metadata } from 'next';
 
 async function getData() {
   const data: {

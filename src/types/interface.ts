@@ -16,15 +16,15 @@ export interface IMovie {
   time?: string;
   duration?: string;
   type?: string;
-  season?: string;
+  seasons?: {
+    id: string;
+    name: string;
+  }[];
   ep?: string;
   yearOrSeason?: string;
   durationOrEP?: string;
   casts?: string[];
-  servers?: {
-    title: string;
-    linkId: string;
-  }[];
+  servers?: IServer[];
   relatedMovies?: IMovie[];
   IMDB?: string;
   genres?: {
@@ -49,4 +49,14 @@ export interface IEpisode {
   id: string;
   dataId: string;
   title: string;
+}
+
+export interface IServer {
+  title: string;
+  linkId: string;
+}
+
+export interface ISeason {
+  id: string;
+  name: string;
 }

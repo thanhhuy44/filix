@@ -8,7 +8,7 @@ import Image from 'next/image';
 import React from 'react';
 
 async function getData(slug: string) {
-  const movie = await Api.getDetailMovie(slug);
+  const movie = await Api.getDetailTV(slug);
   if (movie) {
     return movie;
   }
@@ -20,7 +20,7 @@ export async function generateMetadata({
   params: { slug: string };
 }): Promise<Metadata> {
   const slug = params.slug;
-  const movie: IMovie = await Api.getDetailMovie(slug);
+  const movie: IMovie = await Api.getDetailTV(slug);
   return {
     title: `Filix - Watch ${movie.name}`,
     description: movie.description,
@@ -41,10 +41,15 @@ export async function generateMetadata({
 async function Page({ params }: { params: { slug: string } }) {
   const slug = params.slug;
   const movie: IMovie = await getData(slug);
+
   return (
     <main className="flex flex-col gap-y-4 sm:gap-y-6 md:gap-y-8 lg:gap-y-12 2xl:gap-y-20 mb-4 sm:mb-6 md:mb-8 lg:mb-12 2xl:mb-20">
       <section>
-        <Player cover={movie.cover as string} slug={slug} />
+        <Player
+          cover={movie.cover as string}
+          slug={slug}
+          tvSeasons={movie.seasons}
+        />
       </section>
       <section className="container">
         <div className="border border-slate-300 rounded-lg p-4 flex items-start gap-x-4 bg-slate-700">

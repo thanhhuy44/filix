@@ -33,7 +33,9 @@ function Header() {
     <header className="bg-slate-800">
       <div ref={dropdownRef as LegacyRef<HTMLDivElement>} className="relative">
         <div className="container flex items-center justify-between gap-x-4 py-2 lg:py-4">
-          <Logo />
+          <Link href={'/'}>
+            <Logo />
+          </Link>
           <div className="flex-1 max-w-xs">
             <Search />
           </div>
