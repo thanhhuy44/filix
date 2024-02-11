@@ -43,7 +43,6 @@ function Player({ slug, cover, tvSeasons }: Props) {
 
     if (pathname.includes('/tv/')) {
       if (currEP) {
-        console.log('🚀 ~ handleGetServers ~ currEP:', currEP);
         const response: IServer[] = await Api.getTVServers(
           slug,
           currEP?.dataId
@@ -111,67 +110,69 @@ function Player({ slug, cover, tvSeasons }: Props) {
             })
           : null}
       </div>
-      <div className="container flex flex-col gap-y-2">
-        <div className="flex items-center gap-x-2">
-          <p className="font-medium">Season: </p>
-          <div
-            ref={dropdownRef as LegacyRef<HTMLDivElement>}
-            className="relative flex-1 max-w-[150px]">
+      {pathname.includes('/tv/') ? (
+        <div className="container flex flex-col gap-y-2">
+          <div className="flex items-center gap-x-2">
+            <p className="font-medium">Season: </p>
             <div
-              onClick={() => setOpen((prev) => !prev)}
-              className="bg-white text-slate-800 text-sm p-2 rounded-lg select-none cursor-pointer">
-              {currSeason?.name}
-            </div>
-            <div
-              className={`
+              ref={dropdownRef as LegacyRef<HTMLDivElement>}
+              className="relative flex-1 max-w-[150px]">
+              <div
+                onClick={() => setOpen((prev) => !prev)}
+                className="bg-white text-slate-800 text-sm p-2 rounded-lg select-none cursor-pointer">
+                {currSeason?.name}
+              </div>
+              <div
+                className={`
             absolute top-full mt-1 bg-white text-slate-800 w-full rounded-md overflow-hidden origin-top duration-200
             ${open ? 'opacity-100 scale-y-100' : 'opacity-0 scale-y-0'}
             `}>
-              {tvSeasons?.map((season, index) => {
-                const isActive = season.id === currSeason?.id;
-                return (
-                  <div
-                    className={`select-none p-2 text-sm cursor-pointer ${
-                      isActive
-                        ? 'bg-slate-600 text-slate-50'
-                        : 'hover:bg-slate-300'
-                    }  duration-200`}
-                    key={index}
-                    onClick={() => {
-                      setCurrSeason(season);
-                      handleGetEpisodes();
-                    }}>
-                    {season.name}
-                  </div>
-                );
-              })}
+                {tvSeasons?.map((season, index) => {
+                  const isActive = season.id === currSeason?.id;
+                  return (
+                    <div
+                      className={`select-none p-2 text-sm cursor-pointer ${
+                        isActive
+                          ? 'bg-slate-600 text-slate-50'
+                          : 'hover:bg-slate-300'
+                      }  duration-200`}
+                      key={index}
+                      onClick={() => {
+                        setCurrSeason(season);
+                        handleGetEpisodes();
+                      }}>
+                      {season.name}
+                    </div>
+                  );
+                })}
+              </div>
             </div>
           </div>
+          <div className="flex items-center flex-wrap gap-2">
+            {episodes.length
+              ? episodes.map((episode, index) => {
+                  const isActive = currEP ? episode.id === currEP?.id : false;
+                  return (
+                    <div
+                      onClick={() => {
+                        setCurrEP(episode);
+                        handleGetServers();
+                        handleGetSource();
+                      }}
+                      className={`max-w-[200px] font-light text-sm p-2 rounded-md border border-slate-300 cursor-pointer select-none ${
+                        isActive
+                          ? 'bg-slate-300 text-slate-800'
+                          : 'text-slate-300'
+                      }`}
+                      key={index}>
+                      {episode.title}
+                    </div>
+                  );
+                })
+              : null}
+          </div>
         </div>
-        <div className="flex items-center flex-wrap gap-2">
-          {episodes.length
-            ? episodes.map((episode, index) => {
-                const isActive = currEP ? episode.id === currEP?.id : false;
-                return (
-                  <div
-                    onClick={() => {
-                      setCurrEP(episode);
-                      handleGetServers();
-                      handleGetSource();
-                    }}
-                    className={`max-w-[200px] font-light text-sm p-2 rounded-md border border-slate-300 cursor-pointer select-none ${
-                      isActive
-                        ? 'bg-slate-300 text-slate-800'
-                        : 'text-slate-300'
-                    }`}
-                    key={index}>
-                    {episode.title}
-                  </div>
-                );
-              })
-            : null}
-        </div>
-      </div>
+      ) : null}
     </div>
   );
 }
