@@ -28,12 +28,62 @@ export async function generateMetadata({
     openGraph: {
       title: `Filix - Watch ${movie.name}`,
       description: movie.description,
-      images: [movie.cover as string, movie.poster],
+      images: [
+        {
+          url: movie.cover as string,
+          protocol: 'https',
+          hostname: 'img.flixhq.to',
+          pathname: '**',
+          width: 400,
+          height: 300,
+        },
+        {
+          url: movie.cover as string,
+          protocol: 'https',
+          hostname: 'img.flixhq.to',
+          pathname: '**',
+          width: 800,
+          height: 600,
+        },
+        {
+          url: movie.cover as string,
+          protocol: 'https',
+          hostname: 'img.flixhq.to',
+          pathname: '**',
+          width: 1600,
+          height: 1200,
+        },
+      ],
     },
     twitter: {
       title: `Filix - Watch ${movie.name}`,
       description: movie.description,
-      images: [movie.cover as string, movie.poster],
+      images: [
+        {
+          url: movie.cover as string,
+          protocol: 'https',
+          hostname: 'img.flixhq.to',
+          pathname: '**',
+          width: 400,
+          height: 300,
+        },
+        {
+          url: movie.cover as string,
+          protocol: 'https',
+          hostname: 'img.flixhq.to',
+          pathname: '**',
+          width: 800,
+          height: 600,
+        },
+        {
+          url: movie.cover as string,
+          protocol: 'https',
+          hostname: 'img.flixhq.to',
+          pathname: '**',
+          width: 1600,
+          height: 1200,
+        },
+      ],
     },
   };
 }
