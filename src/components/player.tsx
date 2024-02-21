@@ -159,7 +159,7 @@ function Player({ slug, cover, tvSeasons }: Props) {
                         handleGetServers();
                         handleGetSource();
                       }}
-                      className={`max-w-[200px] font-light text-sm p-2 rounded-md border border-slate-300 cursor-pointer select-none ${
+                      className={`max-w-[200px] line-clamp-1 leading-8 font-light text-sm p-2 rounded-md border border-slate-300 cursor-pointer select-none ${
                         isActive
                           ? 'bg-slate-300 text-slate-800'
                           : 'text-slate-300'

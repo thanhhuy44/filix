@@ -16,15 +16,49 @@ export const metadata: Metadata = {
     name: 'Thanh Huy',
     url: 'https://github.com/thanhhuy44',
   },
+  keywords: ['Filix', 'Stream', 'Movie online', 'TV Show online', 'Nextjs'],
+  metadataBase: new URL('https://filix.vercel.app'),
   openGraph: {
     title: 'Flix - Movie Stream Website',
     description: 'Build by me!',
-    images: [metaImage.src],
+    images: [
+      {
+        url: metaImage.src,
+        width: 400,
+        height: 300,
+      },
+      {
+        url: metaImage.src,
+        width: 800,
+        height: 600,
+      },
+      {
+        url: metaImage.src,
+        width: 1600,
+        height: 1200,
+      },
+    ],
   },
   twitter: {
     title: 'Flix - Movie Stream Website',
     description: 'Build by me!',
-    images: [metaImage.src],
+    images: [
+      {
+        url: metaImage.src,
+        width: 400,
+        height: 300,
+      },
+      {
+        url: metaImage.src,
+        width: 800,
+        height: 600,
+      },
+      {
+        url: metaImage.src,
+        width: 1600,
+        height: 1200,
+      },
+    ],
   },
 };
 
@@ -35,7 +69,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={open_sans.className}>
+      <body className={'flex flex-col min-h-screen ' + open_sans.className}>
         <Header />
         {children}
         <Footer />

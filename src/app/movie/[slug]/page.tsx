@@ -43,7 +43,7 @@ async function Page({ params }: { params: { slug: string } }) {
   const movie: IMovie = await getData(slug);
   return (
     <main className="flex flex-col gap-y-4 sm:gap-y-6 md:gap-y-8 lg:gap-y-12 2xl:gap-y-20 mb-4 sm:mb-6 md:mb-8 lg:mb-12 2xl:mb-20">
-      <section>
+      <section className="container">
         <Player cover={movie.cover as string} slug={slug} />
       </section>
       <section className="container">
